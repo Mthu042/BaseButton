@@ -1,0 +1,184 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+
+import { useState, useCallback } from "react";
+import { Button } from "./Button";
+import { AddIcon, RightArrowIcon, ProfileIcon } from "rupor-icons";
+
+<Meta title="Atoms/Buttons/Button" component={Button} />
+
+export const Template = (args) => <Button {...args} />;
+
+export const LoadingButton = () => {
+  const [loading, setLoading] = useState(false);
+  return (
+    <div>
+      <Button
+        theme="primary"
+        title="start loading"
+        isLoading={loading}
+        onClick={() => setLoading(!loading)}
+        size={"medium"}
+        loaderIcon="loading..."
+      />
+    </div>
+  );
+};
+
+# Button
+
+Кнопка имеет несколько тем и состояний описанных ниже, так же конпке всегда можно задать свойство `backgroundColor`.
+
+## Тема
+
+Передав свойство `theme` можно поменять стили кнопки, на данный момент доступно
+два варинта темы и изменения затрагивают цвет и ховер.
+
+- **primary (по умолчанию)**
+
+<Canvas>
+  <Story
+    name="Primary theme"
+    args={{
+      theme: "primary",
+      title: "Primary Button MDX",
+      loaderIcon: <AddIcon />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **secondary**
+
+<Canvas>
+  <Story
+    name="Secondary theme"
+    args={{
+      title: "Secondary Button",
+      theme: "secondary",
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **secondary dark**
+
+<Canvas>
+  <Story
+    name="Secondary Dark theme"
+    args={{
+      title: "SecondaryDark Button",
+      theme: "secondaryDark",
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **circle**
+
+<Canvas>
+  <Story
+    name="Circle"
+    args={{
+      title: <RightArrowIcon color="white" />,
+      circle: true,
+      theme: "secondaryDark",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **tag**
+
+<Canvas>
+  <Story
+    name="Tag"
+    args={{
+      title: "Tag",
+      theme: "tag",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **Button With Icon**
+
+<Canvas>
+  <Story
+    name="Button With Icon"
+    args={{
+      title: "Icon",
+      theme: "secondaryDark",
+      icon: <ProfileIcon />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **Full Width Button**
+
+Передав свойство `fullWidth` конпка будет занимать всю ширину контейнера
+
+<Canvas>
+  <Story
+    name="Full Width"
+    args={{
+      title: "FullWidth 100%",
+      fullWidth: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **Transparent**
+
+Передав свойство `transparent` конпка будет полностью прозрачной
+
+<Canvas>
+  <Story
+    name="Transparent"
+    args={{
+      title: "transparent 100%",
+      fullWidth: true,
+      theme: "transparent",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- **Primary Medium**
+
+Передав свойство `size` можно изменить размер конпки, есть 3 размера `medium (40px), large (52px), и значение по умолчанию если не одно из них не заданно (48px)`.
+Передав свойство `isLoading` копка будет показывать иконку переданую в `loaderIcon` в зависимости от значения `true` или `false`.
+
+<Canvas>
+  <Story name="Loading process">
+    <LoadingButton />
+  </Story>
+</Canvas>
+
+- **Primary Small**
+
+<Canvas>
+  <Story
+    name="primary small"
+    args={{
+      title: "small",
+      theme: "primary",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Button} />
